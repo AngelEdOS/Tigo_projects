@@ -24,7 +24,7 @@ services:
   nginx:
     image: tobybatch/nginx-fpm-reverse-proxy
     ports:
-      - 8001:80
+      - ${KIMAI_PORT}:80
     volumes:
       - public:/opt/kimai/public:ro
     restart: unless-stopped
@@ -43,7 +43,7 @@ services:
       - ADMINMAIL=admin@kimai.local
       - ADMINPASS=changemeplease
       - DATABASE_URL=mysql://kimaiuser:kimaipassword@sqldb/kimai
-      - TRUSTED_HOSTS=localhost,192.168.242.139
+      - TRUSTED_HOSTS=localhost,${HOST_IP}
       - memory_limit=500
     volumes:
       - public:/opt/kimai/public
